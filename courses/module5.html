@@ -32,7 +32,6 @@
         line-height: 1.7;
       }
 
-      /* --- NAVIGATION --- */
       .lesson-header {
         background: var(--card);
         border-bottom: 1px solid var(--border);
@@ -59,7 +58,6 @@
         margin-bottom: 4px;
       }
 
-      /* --- LESSON CONTENT --- */
       .lesson-card {
         background: var(--card);
         border: 1px solid var(--border);
@@ -75,6 +73,7 @@
         letter-spacing: -2px;
         margin-bottom: 16px;
       }
+
       h2 {
         font-size: 1.6rem;
         font-weight: 700;
@@ -104,7 +103,6 @@
         letter-spacing: 1px;
       }
 
-      /* --- CODE TERMINAL --- */
       .terminal {
         background: var(--code-bg);
         border-radius: 12px;
@@ -118,11 +116,13 @@
         gap: 6px;
         margin-bottom: 16px;
       }
+
       .dot {
         width: 10px;
         height: 10px;
         border-radius: 50%;
       }
+
       .red {
         background: #ff5f56;
       }
@@ -142,7 +142,6 @@
         line-height: 1.5;
       }
 
-      /* --- QUIZ UI --- */
       .quiz-section {
         background: #f8fafc;
         border: 2px solid var(--border);
@@ -169,11 +168,13 @@
         border-color: var(--accent);
         transform: translateX(5px);
       }
+
       .option-btn.correct {
         border-color: #22c55e;
         background: #f0fdf4;
         color: #166534;
       }
+
       .option-btn.wrong {
         border-color: #ef4444;
         background: #fef2f2;
@@ -191,7 +192,15 @@
         cursor: pointer;
         width: 100%;
         margin-top: 24px;
+        display: block;
+        text-decoration: none;
+        text-align: center;
         box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+        transition: transform 0.2s;
+      }
+
+      .btn-finish:hover {
+        transform: translateY(-2px);
       }
     </style>
   </head>
@@ -199,15 +208,6 @@
     <header class="lesson-header">
       <div class="container">
         <a href="../index.html" class="back-link">← DASHBOARD</a>
-        <div
-          style="
-            font-weight: 800;
-            color: var(--text-muted);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-          "
-        ></div>
       </div>
     </header>
 
@@ -224,11 +224,9 @@
           <div class="definition-box">
             <strong>Definition</strong>
             <p>
-              <b>Big O Notation</b> is a mathematical notation that describes
-              the limiting behavior of a function when the argument tends
-              towards a particular value or infinity. In web dev, it measures
-              how <b>time</b> or <b>space</b> requirements grow as data
-              increases.
+              <b>Big O Notation</b> measures how <b>time</b> or <b>space</b>
+              requirements grow as data increases. It's the metric for code
+              efficiency.
             </p>
           </div>
           <div class="terminal">
@@ -238,11 +236,11 @@
               <div class="dot green"></div>
             </div>
             <pre>
-<span style="color: #6272a4;">// O(1) - Constant Time (Fast)</span>
-<span style="color: #ff79c6;">const</span> firstItem = arr[0];
+<span style="color: #6272a4;">// O(1) - Constant Time (Instant)</span>
+<span style="color: #ff79c6;">const</span> val = arr[0];
 
-<span style="color: #6272a4;">// O(n) - Linear Time (Grows with data)</span>
-arr.<span style="color: #50fa7b;">forEach</span>(item => console.<span style="color: #50fa7b;">log</span>(item));</pre>
+<span style="color: #6272a4;">// O(n) - Linear Time (Grows with size)</span>
+arr.<span style="color: #50fa7b;">forEach</span>(i => console.<span style="color: #50fa7b;">log</span>(i));</pre>
           </div>
         </section>
 
@@ -251,9 +249,9 @@ arr.<span style="color: #50fa7b;">forEach</span>(item => console.<span style="co
           <div class="definition-box">
             <strong>Definition</strong>
             <p>
-              <b>Debouncing</b> is a programming practice used to ensure that
-              time-consuming tasks do not fire so often that they make the web
-              page lag. It limits the rate at which a function can fire.
+              <b>Debouncing</b> limits the rate at which a function fires.
+              Crucial for search inputs and scroll events to prevent performance
+              lag.
             </p>
           </div>
           <div class="terminal">
@@ -263,39 +261,11 @@ arr.<span style="color: #50fa7b;">forEach</span>(item => console.<span style="co
               <div class="dot green"></div>
             </div>
             <pre>
-<span style="color: #6272a4;">// Delaying a search until typing stops</span>
 <span style="color: #ff79c6;">let</span> timer;
-input.<span style="color: #50fa7b;">addEventListener</span>(<span style="color: #f1fa8c;">'input'</span>, () => {
+input.<span style="color: #50fa7b;">oninput</span> = () => {
   <span style="color: #ff79c6;">clearTimeout</span>(timer);
-  timer = <span style="color: #ff79c6;">setTimeout</span>(() => <span style="color: #50fa7b;">fetchResults</span>(), 500);
-});</pre>
-          </div>
-        </section>
-
-        <section>
-          <h2>3. Clean Code & Refactoring</h2>
-          <div class="definition-box">
-            <strong>Definition</strong>
-            <p>
-              <b>Refactoring</b> is the process of restructuring existing
-              computer code—changing the factoring—without changing its external
-              behavior. The goal is to improve <b>readability</b> and reduce
-              <b>complexity</b>.
-            </p>
-          </div>
-          <div class="terminal">
-            <div class="terminal-header">
-              <div class="dot red"></div>
-              <div class="dot yellow"></div>
-              <div class="dot green"></div>
-            </div>
-            <pre>
-<span style="color: #6272a4;">// Before: Hard to read</span>
-<span style="color: #ff79c6;">if</span>(user.active && user.age > 18) { ... }
-
-<span style="color: #6272a4;">// After: Semantic & Clean</span>
-<span style="color: #ff79c6;">const</span> canAccess = user.active && user.age > 18;
-<span style="color: #ff79c6;">if</span>(canAccess) { ... }</pre>
+  timer = <span style="color: #ff79c6;">setTimeout</span>(() => <span style="color: #50fa7b;">search</span>(), 500);
+};</pre>
           </div>
         </section>
 
@@ -326,6 +296,7 @@ input.<span style="color: #50fa7b;">addEventListener</span>(<span style="color: 
           <p class="intro-text">
             You have officially finished the WebAcademy Foundations track.
           </p>
+          <a href="../index.html" class="btn-finish">RETURN TO DASHBOARD</a>
         </div>
       </article>
     </main>
@@ -334,7 +305,11 @@ input.<span style="color: #50fa7b;">addEventListener</span>(<span style="color: 
       function checkAnswer(btn, choice) {
         if (choice === "debounce") {
           btn.classList.add("correct");
-          btn.innerHTML = "✓ Correct! Debouncing limits execution rate.";
+          btn.innerHTML = "✓ Correct! Progress Saved.";
+
+          // CRITICAL: Save completion to LocalStorage
+          localStorage.setItem("module5_completed", "true");
+
           setTimeout(() => {
             document.getElementById("quiz-ui").style.display = "none";
             document.getElementById("success-ui").style.display = "block";
@@ -345,21 +320,13 @@ input.<span style="color: #50fa7b;">addEventListener</span>(<span style="color: 
           }, 800);
         } else {
           btn.classList.add("wrong");
-          btn.innerHTML = "✕ Not quite. Look for the 'rate-limiting' term.";
+          btn.innerHTML = "✕ Not quite. Try again!";
           setTimeout(() => {
             btn.classList.remove("wrong");
             btn.innerHTML =
               choice === "refactor" ? "Refactoring" : "Asynchronous Fetch";
-          }, 1500);
+          }, 1200);
         }
-      }
-
-      function saveAndExit() {
-        localStorage.setItem("module5_completed", "true");
-        alert(
-          "Congratulations! Your progress has been saved. Redirecting to Dashboard.",
-        );
-        window.location.href = "../index.html";
       }
     </script>
   </body>
