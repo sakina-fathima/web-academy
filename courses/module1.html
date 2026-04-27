@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module 1: The Trinity Pillars | WebAcademy</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --accent: #6366f1;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border: #e2e8f0;
+        --code-bg: #0f172a;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--text-main);
+        line-height: 1.7;
+      }
+
+      /* --- NAVIGATION --- */
+      .lesson-header {
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .container {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .back-link {
+        text-decoration: none;
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 4px;
+      }
+
+      /* --- LESSON CONTENT --- */
+      .lesson-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 40px;
+        margin: 40px 0;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -2px;
+        margin-bottom: 16px;
+      }
+      h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-top: 48px;
+        margin-bottom: 12px;
+        color: var(--text-main);
+      }
+
+      .intro-text {
+        font-size: 1.15rem;
+        color: var(--text-muted);
+        margin-bottom: 32px;
+      }
+
+      .definition-box {
+        background: #f1f5f9;
+        border-left: 4px solid var(--accent);
+        padding: 20px;
+        border-radius: 0 12px 12px 0;
+        margin-bottom: 20px;
+      }
+
+      .definition-box strong {
+        color: var(--accent);
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+      }
+
+      /* --- CODE TERMINAL --- */
+      .terminal {
+        background: var(--code-bg);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 32px;
+        position: relative;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      }
+
+      .terminal-header {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .red {
+        background: #ff5f56;
+      }
+      .yellow {
+        background: #ffbd2e;
+      }
+      .green {
+        background: #27c93f;
+      }
+
+      pre {
+        margin: 0;
+        color: #f8f8f2;
+        font-family: "Fira Code", monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        line-height: 1.5;
+      }
+
+      /* --- QUIZ UI --- */
+      .quiz-section {
+        background: #f8fafc;
+        border: 2px solid var(--border);
+        border-radius: 20px;
+        padding: 32px;
+        margin-top: 64px;
+      }
+
+      .option-btn {
+        width: 100%;
+        background: var(--card);
+        border: 1px solid var(--border);
+        padding: 16px 20px;
+        border-radius: 12px;
+        margin-top: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        font-family: inherit;
+        text-align: left;
+        transition: all 0.2s ease;
+      }
+
+      .option-btn:hover {
+        border-color: var(--accent);
+        transform: translateX(5px);
+      }
+      .option-btn.correct {
+        border-color: #22c55e;
+        background: #f0fdf4;
+        color: #166534;
+      }
+      .option-btn.wrong {
+        border-color: #ef4444;
+        background: #fef2f2;
+        color: #991b1b;
+      }
+
+      .btn-finish {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 18px;
+        border-radius: 12px;
+        font-weight: 800;
+        font-size: 1rem;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 24px;
+        transition: opacity 0.2s;
+      }
+
+      .btn-finish:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="lesson-header">
+      <div class="container">
+        <a href="../index.html" class="back-link">← BACK TO DASHBOARD</a>
+        <div
+          style="
+            font-weight: 800;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+          "
+        >
+          Foundation Level
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <article class="lesson-card">
+        <h1>The Trinity Pillars</h1>
+        <p class="intro-text">
+          To build for the web, you must master the three pillars of frontend
+          development: Structure, Style, and Logic.
+        </p>
+
+        <section>
+          <h2>1. HTML (HyperText Markup Language)</h2>
+          <div class="definition-box">
+            <strong>Definition</strong>
+            <p>
+              HTML is the <b>Structure</b>. It acts as the "bones" or skeleton
+              of a website, defining the semantic meaning of every element on
+              the page, such as headings, paragraphs, and links.
+            </p>
+          </div>
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="dot red"></div>
+              <div class="dot yellow"></div>
+              <div class="dot green"></div>
+            </div>
+            <pre>
+<span style="color: #6272a4;">&lt;!-- index.html --&gt;</span>
+<span style="color: #ff79c6;">&lt;article&gt;</span>
+  <span style="color: #ff79c6;">&lt;h1&gt;</span>The Main Heading<span style="color: #ff79c6;">&lt;/h1&gt;</span>
+  <span style="color: #ff79c6;">&lt;button</span> <span style="color: #50fa7b;">class</span>=<span style="color: #f1fa8c;">"cta-btn"</span><span style="color: #ff79c6;">&gt;</span>Get Started<span style="color: #ff79c6;">&lt;/button&gt;</span>
+<span style="color: #ff79c6;">&lt;/article&gt;</span></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>2. CSS (Cascading Style Sheets)</h2>
+          <div class="definition-box">
+            <strong>Definition</strong>
+            <p>
+              CSS is the <b>Presentation</b>. It acts as the "skin" or visual
+              layer. It describes how HTML elements are to be displayed on
+              screen, including layout, colors, and fonts.
+            </p>
+          </div>
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="dot red"></div>
+              <div class="dot yellow"></div>
+              <div class="dot green"></div>
+            </div>
+            <pre>
+<span style="color: #6272a4;">/* style.css */</span>
+<span style="color: #50fa7b;">.cta-btn</span> {
+  <span style="color: #ff79c6;">background</span>: #6366f1;
+  <span style="color: #ff79c6;">color</span>: white;
+  <span style="color: #ff79c6;">border-radius</span>: 8px;
+  <span style="color: #ff79c6;">padding</span>: 12px 24px;
+}</pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>3. JavaScript (JS)</h2>
+          <div class="definition-box">
+            <strong>Definition</strong>
+            <p>
+              JavaScript is the <b>Behavior</b>. It acts as the "nerves" or
+              brain. It allows you to create interactive, dynamic content that
+              responds to user actions like clicks and keyboard input.
+            </p>
+          </div>
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="dot red"></div>
+              <div class="dot yellow"></div>
+              <div class="dot green"></div>
+            </div>
+            <pre>
+<span style="color: #6272a4;">// script.js</span>
+<span style="color: #ff79c6;">const</span> btn = document.<span style="color: #50fa7b;">querySelector</span>(<span style="color: #f1fa8c;">'.cta-btn'</span>);
+
+btn.<span style="color: #50fa7b;">addEventListener</span>(<span style="color: #f1fa8c;">'click'</span>, () => {
+  <span style="color: #ff79c6;">alert</span>(<span style="color: #f1fa8c;">'Welcome to the Web!'</span>);
+});</pre>
+          </div>
+        </section>
+
+        <div id="quiz-ui" class="quiz-section">
+          <h3 style="margin-bottom: 8px">Final Module Assessment</h3>
+          <p style="color: var(--text-muted); margin-bottom: 24px">
+            Which core technology is responsible for the
+            <b>visual presentation</b> and layout of a website?
+          </p>
+
+          <button class="option-btn" onclick="checkAnswer(this, 'html')">
+            HTML (Structure)
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, 'css')">
+            CSS (Presentation)
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, 'js')">
+            JavaScript (Behavior)
+          </button>
+        </div>
+
+        <div
+          id="success-ui"
+          style="display: none; text-align: center; margin-top: 60px"
+        >
+          <div style="font-size: 4rem; margin-bottom: 16px">🏆</div>
+          <h2 style="margin-bottom: 8px">Module 1 Completed!</h2>
+          <p class="intro-text">
+            You've mastered the definitions and roles of the Trinity Pillars.
+          </p>
+          <button onclick="saveAndExit()" class="btn-finish">
+            Unlock Module 02 →
+          </button>
+        </div>
+      </article>
+    </main>
+
+    <script>
+      function checkAnswer(btn, choice) {
+        const btns = document.querySelectorAll(".option-btn");
+
+        if (choice === "css") {
+          btn.classList.add("correct");
+          btn.innerHTML = "✓ Correct! CSS handles visual style.";
+          setTimeout(() => {
+            document.getElementById("quiz-ui").style.display = "none";
+            document.getElementById("success-ui").style.display = "block";
+            window.scrollTo({
+              top: document.body.scrollHeight,
+              behavior: "smooth",
+            });
+          }, 800);
+        } else {
+          btn.classList.add("wrong");
+          btn.innerHTML = "✕ Incorrect. Try again.";
+          setTimeout(() => {
+            btn.classList.remove("wrong");
+            btn.innerHTML =
+              choice === "html" ? "HTML (Structure)" : "JavaScript (Behavior)";
+          }, 1500);
+        }
+      }
+
+      function saveAndExit() {
+        localStorage.setItem("module1_completed", "true");
+        window.location.href = "../index.html";
+      }
+    </script>
+  </body>
+</html>

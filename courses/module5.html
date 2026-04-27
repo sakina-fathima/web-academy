@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module 5: Performance | WebAcademy</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --accent: #6366f1;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border: #e2e8f0;
+        --code-bg: #0f172a;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--bg);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        color: var(--text-main);
+        line-height: 1.7;
+      }
+
+      /* --- NAVIGATION --- */
+      .lesson-header {
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .container {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .back-link {
+        text-decoration: none;
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 4px;
+      }
+
+      /* --- LESSON CONTENT --- */
+      .lesson-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 40px;
+        margin: 40px 0;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -2px;
+        margin-bottom: 16px;
+      }
+      h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-top: 48px;
+        margin-bottom: 12px;
+        color: var(--text-main);
+      }
+
+      .intro-text {
+        font-size: 1.15rem;
+        color: var(--text-muted);
+        margin-bottom: 32px;
+      }
+
+      .definition-box {
+        background: #f1f5f9;
+        border-left: 4px solid var(--accent);
+        padding: 20px;
+        border-radius: 0 12px 12px 0;
+        margin-bottom: 20px;
+      }
+
+      .definition-box strong {
+        color: var(--accent);
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+      }
+
+      /* --- CODE TERMINAL --- */
+      .terminal {
+        background: var(--code-bg);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 32px;
+        position: relative;
+      }
+
+      .terminal-header {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .red {
+        background: #ff5f56;
+      }
+      .yellow {
+        background: #ffbd2e;
+      }
+      .green {
+        background: #27c93f;
+      }
+
+      pre {
+        margin: 0;
+        color: #f8f8f2;
+        font-family: "Fira Code", monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        line-height: 1.5;
+      }
+
+      /* --- QUIZ UI --- */
+      .quiz-section {
+        background: #f8fafc;
+        border: 2px solid var(--border);
+        border-radius: 20px;
+        padding: 32px;
+        margin-top: 64px;
+      }
+
+      .option-btn {
+        width: 100%;
+        background: var(--card);
+        border: 1px solid var(--border);
+        padding: 16px 20px;
+        border-radius: 12px;
+        margin-top: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        font-family: inherit;
+        text-align: left;
+        transition: all 0.2s ease;
+      }
+
+      .option-btn:hover {
+        border-color: var(--accent);
+        transform: translateX(5px);
+      }
+      .option-btn.correct {
+        border-color: #22c55e;
+        background: #f0fdf4;
+        color: #166534;
+      }
+      .option-btn.wrong {
+        border-color: #ef4444;
+        background: #fef2f2;
+        color: #991b1b;
+      }
+
+      .btn-finish {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 18px;
+        border-radius: 12px;
+        font-weight: 800;
+        font-size: 1.1rem;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 24px;
+        box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="lesson-header">
+      <div class="container">
+        <a href="../index.html" class="back-link">← DASHBOARD</a>
+        <div
+          style="
+            font-weight: 800;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+          "
+        ></div>
+      </div>
+    </header>
+
+    <main class="container">
+      <article class="lesson-card">
+        <h1>Optimization</h1>
+        <p class="intro-text">
+          Writing code that works is the first step. Writing code that is
+          efficient, fast, and scalable is what defines a Senior Engineer.
+        </p>
+
+        <section>
+          <h2>1. Code Complexity (Big O)</h2>
+          <div class="definition-box">
+            <strong>Definition</strong>
+            <p>
+              <b>Big O Notation</b> is a mathematical notation that describes
+              the limiting behavior of a function when the argument tends
+              towards a particular value or infinity. In web dev, it measures
+              how <b>time</b> or <b>space</b> requirements grow as data
+              increases.
+            </p>
+          </div>
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="dot red"></div>
+              <div class="dot yellow"></div>
+              <div class="dot green"></div>
+            </div>
+            <pre>
+<span style="color: #6272a4;">// O(1) - Constant Time (Fast)</span>
+<span style="color: #ff79c6;">const</span> firstItem = arr[0];
+
+<span style="color: #6272a4;">// O(n) - Linear Time (Grows with data)</span>
+arr.<span style="color: #50fa7b;">forEach</span>(item => console.<span style="color: #50fa7b;">log</span>(item));</pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>2. Debouncing</h2>
+          <div class="definition-box">
+            <strong>Definition</strong>
+            <p>
+              <b>Debouncing</b> is a programming practice used to ensure that
+              time-consuming tasks do not fire so often that they make the web
+              page lag. It limits the rate at which a function can fire.
+            </p>
+          </div>
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="dot red"></div>
+              <div class="dot yellow"></div>
+              <div class="dot green"></div>
+            </div>
+            <pre>
+<span style="color: #6272a4;">// Delaying a search until typing stops</span>
+<span style="color: #ff79c6;">let</span> timer;
+input.<span style="color: #50fa7b;">addEventListener</span>(<span style="color: #f1fa8c;">'input'</span>, () => {
+  <span style="color: #ff79c6;">clearTimeout</span>(timer);
+  timer = <span style="color: #ff79c6;">setTimeout</span>(() => <span style="color: #50fa7b;">fetchResults</span>(), 500);
+});</pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>3. Clean Code & Refactoring</h2>
+          <div class="definition-box">
+            <strong>Definition</strong>
+            <p>
+              <b>Refactoring</b> is the process of restructuring existing
+              computer code—changing the factoring—without changing its external
+              behavior. The goal is to improve <b>readability</b> and reduce
+              <b>complexity</b>.
+            </p>
+          </div>
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="dot red"></div>
+              <div class="dot yellow"></div>
+              <div class="dot green"></div>
+            </div>
+            <pre>
+<span style="color: #6272a4;">// Before: Hard to read</span>
+<span style="color: #ff79c6;">if</span>(user.active && user.age > 18) { ... }
+
+<span style="color: #6272a4;">// After: Semantic & Clean</span>
+<span style="color: #ff79c6;">const</span> canAccess = user.active && user.age > 18;
+<span style="color: #ff79c6;">if</span>(canAccess) { ... }</pre>
+          </div>
+        </section>
+
+        <div id="quiz-ui" class="quiz-section">
+          <h3 style="margin-bottom: 8px">Final Performance Check</h3>
+          <p style="color: var(--text-muted); margin-bottom: 24px">
+            Which technique is used to prevent a function from firing too many
+            times in a short period (e.g., during window resizing)?
+          </p>
+
+          <button class="option-btn" onclick="checkAnswer(this, 'refactor')">
+            Refactoring
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, 'debounce')">
+            Debouncing
+          </button>
+          <button class="option-btn" onclick="checkAnswer(this, 'async')">
+            Asynchronous Fetch
+          </button>
+        </div>
+
+        <div
+          id="success-ui"
+          style="display: none; text-align: center; margin-top: 60px"
+        >
+          <div style="font-size: 5rem; margin-bottom: 16px">⚡</div>
+          <h2 style="margin-bottom: 8px">Curriculum Complete!</h2>
+          <p class="intro-text">
+            You have officially finished the WebAcademy Foundations track.
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <script>
+      function checkAnswer(btn, choice) {
+        if (choice === "debounce") {
+          btn.classList.add("correct");
+          btn.innerHTML = "✓ Correct! Debouncing limits execution rate.";
+          setTimeout(() => {
+            document.getElementById("quiz-ui").style.display = "none";
+            document.getElementById("success-ui").style.display = "block";
+            window.scrollTo({
+              top: document.body.scrollHeight,
+              behavior: "smooth",
+            });
+          }, 800);
+        } else {
+          btn.classList.add("wrong");
+          btn.innerHTML = "✕ Not quite. Look for the 'rate-limiting' term.";
+          setTimeout(() => {
+            btn.classList.remove("wrong");
+            btn.innerHTML =
+              choice === "refactor" ? "Refactoring" : "Asynchronous Fetch";
+          }, 1500);
+        }
+      }
+
+      function saveAndExit() {
+        localStorage.setItem("module5_completed", "true");
+        alert(
+          "Congratulations! Your progress has been saved. Redirecting to Dashboard.",
+        );
+        window.location.href = "../index.html";
+      }
+    </script>
+  </body>
+</html>

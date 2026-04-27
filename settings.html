@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings | WebAcademy</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      const savedTheme = localStorage.getItem("user-theme") || "light";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
+  </head>
+  <body class="dashboard-layout">
+    <nav class="side-nav">
+      <div class="logo">W<span>A</span></div>
+      <a href="index.html" class="icon-circle">🏠</a>
+      <a href="notes.html" class="icon-circle">📝</a>
+      <a href="settings.html" class="icon-circle active">⚙️</a>
+    </nav>
+
+    <main class="main-content">
+      <div class="content-wrapper">
+        <h1>Settings</h1>
+        <div class="course-card" style="margin-top: 20px">
+          <h3>Theme Settings</h3>
+          <div style="display: flex; gap: 10px; margin-top: 15px">
+            <button onclick="setTheme('light')" class="btn-primary">
+              Light
+            </button>
+            <button
+              onclick="setTheme('dark')"
+              class="btn-primary"
+              style="background: #334155"
+            >
+              Dark
+            </button>
+            <button
+              onclick="setTheme('midnight')"
+              class="btn-primary"
+              style="
+                background: #000;
+                color: #22c55e;
+                border: 1px solid #22c55e;
+              "
+            >
+              Midnight
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="course-card"
+          style="margin-top: 20px; border: 1px solid #ef4444"
+        >
+          <h3 style="color: #ef4444">Danger Zone</h3>
+          <button
+            onclick="reset()"
+            class="btn-primary"
+            style="background: #ef4444; margin-top: 10px"
+          >
+            Reset Progress
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      function setTheme(t) {
+        document.documentElement.setAttribute("data-theme", t);
+        localStorage.setItem("user-theme", t);
+      }
+      function reset() {
+        if (confirm("Wipe everything?")) {
+          localStorage.clear();
+          window.location.href = "index.html";
+        }
+      }
+    </script>
+  </body>
+</html>

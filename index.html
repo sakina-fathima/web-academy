@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | WebAcademy</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Existing Styles */
+      .header-section {
+        padding: 80px 0 40px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+        margin-top: 40px;
+      }
+      .status-badge {
+        font-size: 0.7rem;
+        font-weight: 800;
+        padding: 4px 12px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 16px;
+        display: inline-block;
+      }
+      .completed {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .in-progress {
+        background: #fef9c3;
+        color: #854d0e;
+      }
+      .locked {
+        background: #f1f5f9;
+        color: #64748b;
+      }
+      .progress-bar-bg {
+        width: 100%;
+        height: 8px;
+        background: #e2e8f0;
+        border-radius: 4px;
+        margin-bottom: 32px;
+      }
+      .progress-fill {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 4px;
+        transition: width 1s ease;
+      }
+
+      /* New: Workspace & Settings Styles */
+      .workspace-section {
+        margin-top: 60px;
+        padding: 40px;
+        background: #1e293b;
+        border-radius: 24px;
+        color: white;
+      }
+      .notes-area {
+        width: 100%;
+        height: 200px;
+        background: #334155;
+        border: 1px solid #475569;
+        border-radius: 12px;
+        padding: 20px;
+        color: white;
+        font-family: inherit;
+        margin-top: 20px;
+        resize: vertical;
+      }
+
+      #settings-panel {
+        display: none;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: white;
+        border: 1px solid var(--border);
+        padding: 24px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        width: 260px;
+        color: var(--text-main);
+      }
+      .settings-toggle-btn {
+        background: #f1f5f9;
+        border: none;
+        padding: 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background 0.2s;
+      }
+      .settings-toggle-btn:hover {
+        background: #e2e8f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="settings-panel">
+      <h3 style="margin-bottom: 16px; font-size: 1.1rem">Dashboard Settings</h3>
+      <div style="margin-bottom: 20px">
+        <label
+          style="
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+          "
+        >
+        </label>
+      </div>
+      <button
+        class="btn-primary"
+        style="width: 100%; background: #ef4444"
+        onclick="resetProgress()"
+      >
+        Reset All Progress
+      </button>
+      <button
+        style="
+          width: 100%;
+          background: none;
+          border: none;
+          margin-top: 15px;
+          cursor: pointer;
+          color: var(--text-muted);
+        "
+        onclick="toggleSettings()"
+      >
+        Close
+      </button>
+    </div>
+
+    <main class="container">
+      <header class="header-section">
+        <div>
+          <h1 style="font-size: 3rem; font-weight: 800; letter-spacing: -3px">
+            WebAcademy.
+          </h1>
+          <p style="color: var(--text-muted); font-size: 1.1rem">Welcome</p>
+        </div>
+        <button class="settings-toggle-btn" onclick="toggleSettings()">
+          ⚙️
+        </button>
+      </header>
+
+      <div class="progress-section">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 700;
+          "
+        >
+          <span>Total Course Progress</span>
+          <span id="progress-text">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="glass-card" id="card1">
+          <span id="status1" class="status-badge in-progress">Available</span>
+          <h3>01: Web Foundations</h3>
+          <p style="color: var(--text-muted); margin: 12px 0 24px 0">
+            Master HTML5, CSS3, and basic UI behavior.
+          </p>
+          <a href="courses/module1.html" class="btn-primary" id="btn1"
+            >Start Learning</a
+          >
+        </div>
+
+        <div class="glass-card" id="card2">
+          <span id="status2" class="status-badge locked">Locked</span>
+          <h3>02: JavaScript Logic</h3>
+          <p style="color: var(--text-muted); margin: 12px 0 24px 0">
+            Variables, functions, and modern ES6 patterns.
+          </p>
+          <a
+            href="courses/module2.html"
+            class="btn-primary btn-locked"
+            id="btn2"
+            >Locked</a
+          >
+        </div>
+
+        <div class="glass-card" id="card3">
+          <span id="status3" class="status-badge locked">Locked</span>
+          <h3>03: The DOM Tree</h3>
+          <p style="color: var(--text-muted); margin: 12px 0 24px 0">
+            Learn how to manipulate live interfaces.
+          </p>
+          <a
+            href="courses/module3.html"
+            class="btn-primary btn-locked"
+            id="btn3"
+            >Locked</a
+          >
+        </div>
+
+        <div class="glass-card" id="card4">
+          <span id="status4" class="status-badge locked">Locked</span>
+          <h3>04: APIs & Async</h3>
+          <p style="color: var(--text-muted); margin: 12px 0 24px 0">
+            Fetch real-time data from external servers.
+          </p>
+          <a
+            href="courses/module4.html"
+            class="btn-primary btn-locked"
+            id="btn4"
+            >Locked</a
+          >
+        </div>
+
+        <div class="glass-card" id="card5">
+          <span id="status5" class="status-badge locked">Locked</span>
+          <h3>05: Optimization</h3>
+          <p style="color: var(--text-muted); margin: 12px 0 24px 0">
+            Code performance and best practices.
+          </p>
+          <a
+            href="courses/module5.html"
+            class="btn-primary btn-locked"
+            id="btn5"
+            >Locked</a
+          >
+        </div>
+      </div>
+
+      <section class="workspace-section">
+        <h2 style="font-weight: 800; letter-spacing: -1px">
+          📝 Student Workspace
+        </h2>
+        <p style="opacity: 0.7">
+          Quick notes, code snippets, or reminders. Saved automatically.
+        </p>
+        <textarea
+          id="user-notes"
+          class="notes-area"
+          placeholder="e.g. Remember to use 'const' for variables that don't change..."
+        ></textarea>
+        <div
+          style="
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <span id="save-status" style="font-size: 0.8rem; opacity: 0.5"
+            >Changes saved to local storage</span
+          >
+          <button
+            onclick="clearNotes()"
+            style="
+              background: none;
+              border: 1px solid #475569;
+              color: white;
+              padding: 8px 16px;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 0.8rem;
+            "
+          >
+            Clear Workspace
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const modules = [1, 2, 3, 4, 5];
+        let completedCount = 0;
+
+        // --- MODULE PROGRESSION LOGIC ---
+        modules.forEach((num) => {
+          const isCompleted =
+            localStorage.getItem(`module${num}_completed`) === "true";
+          const statusBadge = document.getElementById(`status${num}`);
+          const btn = document.getElementById(`btn${num}`);
+
+          if (isCompleted) {
+            completedCount++;
+            statusBadge.innerText = "Completed";
+            statusBadge.className = "status-badge completed";
+            btn.innerText = "Review Lesson";
+
+            const nextNum = num + 1;
+            if (nextNum <= 5) {
+              const nextBtn = document.getElementById(`btn${nextNum}`);
+              const nextStatus = document.getElementById(`status${nextNum}`);
+              nextBtn.classList.remove("btn-locked");
+              nextBtn.innerText = "Continue";
+              nextStatus.innerText = "Available";
+              nextStatus.className = "status-badge in-progress";
+            }
+          }
+        });
+
+        const percent = (completedCount / 5) * 100;
+        document.getElementById("progress-fill").style.width = percent + "%";
+        document.getElementById("progress-text").innerText =
+          Math.round(percent) + "%";
+
+        // --- NOTES LOGIC ---
+        const notesArea = document.getElementById("user-notes");
+        const saveStatus = document.getElementById("save-status");
+
+        // Load existing notes
+        notesArea.value = localStorage.getItem("webacademy_notes") || "";
+
+        // Save on input
+        notesArea.addEventListener("input", () => {
+          localStorage.setItem("webacademy_notes", notesArea.value);
+          saveStatus.innerText = "Saving...";
+          setTimeout(() => {
+            saveStatus.innerText = "Changes saved to local storage";
+          }, 1000);
+        });
+      });
+
+      // --- SETTINGS FUNCTIONS ---
+      function toggleSettings() {
+        const panel = document.getElementById("settings-panel");
+        panel.style.display =
+          panel.style.display === "block" ? "none" : "block";
+      }
+
+      function resetProgress() {
+        if (
+          confirm(
+            "Are you sure? This will lock all modules and delete your notes.",
+          )
+        ) {
+          localStorage.clear();
+          window.location.reload();
+        }
+      }
+
+      function clearNotes() {
+        if (confirm("Clear your workspace?")) {
+          document.getElementById("user-notes").value = "";
+          localStorage.removeItem("webacademy_notes");
+        }
+      }
+    </script>
+  </body>
+</html>
