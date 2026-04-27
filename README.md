@@ -5,5 +5,5 @@ A 5-module learning platform teaching HTML, CSS, JavaScript, DOM manipulation, a
 ## Tech Stack
 
 - **Frontend:** Vanilla JS, CSS3 (Glassmorphism), HTML5
-- **Deployment:** GitHub Pages (Development), AWS S3 & CloudFront (Production)
+- **Deployment:** GitHub Pages (Development)
 - **State:** LocalStorage for progress persistence.
